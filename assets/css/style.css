@@ -1,0 +1,10 @@
+.cardPaquete{
+    width: 22%;
+    margin: 0 30px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.cardPaquete img{
+    width: 100%;
+    border-radius: 10px;
+}
