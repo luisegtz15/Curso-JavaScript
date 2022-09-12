@@ -1,124 +1,50 @@
 //Realicé un programa con el fin de realizar una suma de la contratación de un paquete y multiples servicios, así como se ve en el HTML
-let sumaTotal=0
-let varS1=0
-let varS2=0
-let varS3=0
-let varS4=0
-let varS5=0
-let varS6=0
-let varS7=0
 
-//Función de Suma para la contratación de paquetes y servcios
-function Sumar(precio){
+let sumaTotal=0
+
+function Sumar(precio){ //Función de Suma para la contratación de paquetes y servcios
     sumaTotal = sumaTotal + precio
     return sumaTotal;
 }
 
+const paquetes = [
+    {id:"P1", paquete:"Empresarial", precio:8000},
+    {id:"P2", paquete:"Premium-Gradruación", precio:10000},
+    {id:"P3", paquete:"Premium-Mixto", precio:14000},
+    {id:"P4", paquete:"Boda", precio:20000},
+];
+const servicios = [
+    {id:"S1", servicio:"Meseros y personal", precio:1200},
+    {id:"S2", servicio:"Decoración", precio:700},
+    {id:"S3", servicio:"Mesa de dulces", precio:1000},
+    {id:"S4", servicio:"Vajillas y utencilios", precio:300},
+    {id:"S5", servicio:"Servicio de iluminación", precio:250},
+    {id:"S6", servicio:"Servicio de sonido y música", precio:500},
+    {id:"S7", servicio:"Servicio de video y fotografía", precio:2000},
+];
+
 //Selección de paquete
-    let paquete = (prompt("Escoge el paquete que deseas"))
-    switch (paquete){
-        case "P1":
-            Sumar(8000)
-            break;
-    
-        case "P2":
-            Sumar(10000)
-            break
-    
-        case "P3":
-            Sumar(14000)
-            break
-    
-        case "P4":
-            Sumar(20000)
-            break
-        }   
-
-
-//Se deciden cuántos servicios adicionales se contratarán
-let nuServicios = Number(prompt("¿Cuántos servicios deseas contratar"))
-
-//Selección de servicios
-for (let index = 1; index <= nuServicios; index++) {
-    let servicio = (prompt("Escoge los servicios adicionales que desees"))
-    switch (servicio){
-        case "S1":
-            if (varS1==0){
-                Sumar(1200)
-                varS1=1
-            }
-            else {
-                console.log("Ya escogiste este servicio, por favor escoge otro");
-                index--
-            }
-            break;
-
-        case "S2":
-            if (varS2==0){
-                Sumar(700)
-                varS2=1
-            }
-            else {
-                console.log("Ya escogiste este servicio, por favor escoge otro");
-                index--
-            }
-            break;
-
-        case "S3":
-            if (varS3==0){
-                Sumar(1000)
-                varS3=1
-            }
-            else {
-                console.log("Ya escogiste este servicio, por favor escoge otro");
-                index--
-            }
-            break;
-
-        case "S4":
-            if (varS4==0){
-                Sumar(300)
-                varS4=1
-            }
-            else {
-                console.log("Ya escogiste este servicio, por favor escoge otro");
-                index--
-            }
-            break;
-
-        case "S5":
-            if (varS5==0){
-                Sumar(250)
-                varS5=1
-            }
-            else {
-                console.log("Ya escogiste este servicio, por favor escoge otro");
-                index--
-            }
-            break;
-    
-        case "S6":
-            if (varS6==0){
-                Sumar(500)
-                varS6=1
-            }
-            else {
-                console.log("Ya escogiste este servicio, por favor escoge otro");
-                index--
-            }
-            break;
-    
-        case "S7":
-            if (varS7==0){
-                Sumar(2000)
-                varS7=1
-            }
-            else {
-                console.log("Ya escogiste este servicio, por favor escoge otro");
-                index--
-            }
-            break;
+let paqueteIn = (prompt("Escoge el paquete que deseas (Escribir el ID del Paquete) P1 - P4"))
+const paqueteCarrito = []; // Array nuevo en el que se almacenará el paquete que se desea contratar
+for (const paquete of paquetes){ // For necesario para recorrer el array y buscar el objeto perteneciente al ID ingresado 
+    if(paqueteIn == paquete.id){// Si el ID es encontrado, se le sumará el precio correspondiente y se agregará el elemento al nuevo Array perteneciente a los servicios que se van a contratar
+        Sumar(paquete.precio)
+        paqueteCarrito.push(paquete.paquete)
     }
 }
-console.log(sumaTotal);
+
+//Selección de servicios
+const numeroDeServicios = Number(prompt("¿Cuántos servicios deseas contratar (Favor de introducir sólo números) 0 - 7)"))
+const serviciosCarrito = []; // Array nuevo en el que se almacenará los servicios que se desean contratar
+for (let index = 1; index <= numeroDeServicios; index++) { // Este "for" sirve para ejecutar el prompt una cantidad de veces "De acuerdo al numero de servicios que se contratará"
+    let servicioIn = (prompt("Escoge el servicio que deseas agregar (Escribir el ID del servicio) S1 - S7")) 
+    for (const servicio of servicios){ // For necesario para recorrer el array y buscar el objeto perteneciente al ID ingresado
+        if(servicioIn == servicio.id){ // Si el ID es encontrado, se le sumará el precio correspondiente y se agregará el elemento al nuevo Array perteneciente a los servicios que se van a contratar
+            Sumar(servicio.precio)
+            serviciosCarrito.push(servicio.servicio)
+        }
+    }
+}
+alert("Se incorporó lo siguiente a tu carrito:" + `\nPaquete: ${paqueteCarrito}` + `\nServicios: ${serviciosCarrito.join(", ")}` + `\nPrecio total: $${sumaTotal}`);
+
 
