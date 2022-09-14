@@ -1,46 +1,74 @@
-//Realicé un programa con el fin de realizar una suma de la contratación de un paquete y multiples servicios, así como se ve en el HTML
+//Programa para que el usuario pueda armar su propio paquete y cotizar el precio (El HTML y el programa irá mejorando y se agregarán más condiciones)
 
+const asistentes = [
+    {minAsistentes: 0, maxAsistentes: 40 , precio:5000},
+    {minAsistentes: 41, maxAsistentes: 60 , precio:6500},
+    {minAsistentes: 61, maxAsistentes: 80 , precio:7200},
+    {minAsistentes: 81, maxAsistentes: 100 , precio:8600},
+    {minAsistentes: 101, maxAsistentes: 150 , precio:11900},
+    {minAsistentes: 151, maxAsistentes: 200 , precio:14900},
+    {minAsistentes: 201, maxAsistentes: 250 , precio:17700},
+    {minAsistentes: 251, maxAsistentes: 300 , precio:20300},
+    {minAsistentes: 301, maxAsistentes: 350 , precio:22800},
+    {minAsistentes: 351, maxAsistentes: 400 , precio:25300}
+]
+const eventos = [
+    {evento: "Boda", porcentaje: 15},
+    {evento: "Graduación", porcentaje: 12},
+    {evento: "Empresarial", porcentaje: 10},
+    {evento: "XV Años", porcentaje: 8},
+    {evento: "Bautizo", porcentaje: 5},
+    {evento: "Piñata", porcentaje: 3},
+    {evento: "Auditorio", porcentaje: 2},
+    {evento: "Otro", porcentaje: 2}
+]
+const dias = [
+    {dia: "Domingo", porcentaje: 2},
+    {dia: "Martes", porcentaje: 1},
+    {dia: "Miércoles", porcentaje: 1},
+    {dia: "Jueves", porcentaje: 1},
+    {dia: "Viernes", porcentaje: 2},
+    {dia: "Sábado", porcentaje: 8},
+]
+
+//Función de suma para calcular el precio final del paquete
 let sumaTotal=0
-let sumar = (precio) => sumaTotal += precio; //Función de Suma para la contratación de paquetes y servicios
+let suma = (precio) => sumaTotal+=precio
 
-const paquetes = [
-    {id:"P1", paquete:"Empresarial", precio:8000},
-    {id:"P2", paquete:"Premium-Gradruación", precio:10000},
-    {id:"P3", paquete:"Premium-Mixto", precio:14000},
-    {id:"P4", paquete:"Boda", precio:20000},
-];
-const servicios = [
-    {id:"S1", servicio:"Meseros y personal", precio:1200},
-    {id:"S2", servicio:"Decoración", precio:700},
-    {id:"S3", servicio:"Mesa de dulces", precio:1000},
-    {id:"S4", servicio:"Vajillas y utencilios", precio:300},
-    {id:"S5", servicio:"Servicio de iluminación", precio:250},
-    {id:"S6", servicio:"Servicio de sonido y música", precio:500},
-    {id:"S7", servicio:"Servicio de video y fotografía", precio:2000},
-];
+//Función para agregar aumento de porcentaje al costo del evento
+let interes = (porcentaje) => suma(precioAsistentes*(porcentaje/100))
 
-//Selección de paquete
-let paqueteIn = (prompt("Escoge el paquete que deseas (Escribir el ID del Paquete) P1 - P4"))
-const paqueteCarrito = []; // Array nuevo en el que se almacenará el paquete que se desea contratar
-for (const paquete of paquetes){ // For necesario para recorrer el array y buscar el objeto perteneciente al ID ingresado 
-    if(paqueteIn == paquete.id){// Si el ID es encontrado, se le sumará el precio correspondiente y se agregará el elemento al nuevo Array perteneciente a los servicios que se van a contratar
-        sumar(paquete.precio)
-        paqueteCarrito.push(paquete.paquete)
+// ASISTENTES
+let asistentesInput = prompt("¿Cuantos personas asistirán al evento?") //Se ingresa el número personas que asistirán al evento
+let asistentesOutput
+let precioAsistentes
+asistentes.forEach(element => { //Se recorre el array para confirmar si se puede realizar un evento con los asistentes que introdujeron
+    if(asistentesInput>=element.minAsistentes && asistentesInput<=element.maxAsistentes){ //Busca en el array el elemento correspondiente comparando los asistentes min y los asistentes max
+        asistentesOutput=(`${element.minAsistentes}-${element.maxAsistentes}`) //Almacena el número de asistentes que pueden asistir al evento
+        suma(element.precio) //Se suma el precio de acuerdo a los asistentes ingresados
+        precioAsistentes=element.precio //Se almacena el costo por la cantidad de asistentes
     }
-}
+});
 
-//Selección de servicios
-const numeroDeServicios = Number(prompt("¿Cuántos servicios deseas contratar (Favor de introducir sólo números) 0 - 7)"))
-const serviciosCarrito = []; // Array nuevo en el que se almacenará los servicios que se desean contratar
-for (let index = 1; index <= numeroDeServicios; index++) { // Este "for" sirve para ejecutar el prompt una cantidad de veces "De acuerdo al numero de servicios que se contratará"
-    let servicioIn = (prompt("Escoge el servicio que deseas agregar (Escribir el ID del servicio) S1 - S7")) 
-    for (const servicio of servicios){ // For necesario para recorrer el array y buscar el objeto perteneciente al ID ingresado
-        if(servicioIn == servicio.id){ // Si el ID es encontrado, se le sumará el precio correspondiente y se agregará el elemento al nuevo Array perteneciente a los servicios que se van a contratar
-            sumar(servicio.precio)
-            serviciosCarrito.push(servicio.servicio)
-        }
-    }
-}
-alert("Se incorporó lo siguiente a tu carrito:" + `\nPaquete: ${paqueteCarrito}` + `\nServicios: ${serviciosCarrito.join(", ")}` + `\nPrecio total: $${sumaTotal}`);
+// TIPO DE EVENTO
+let tipoEventoInput = prompt("¿Qué tipo de evento realizarás?") //Se ingresa el tipo de evento que se realizará
+const seleccionEvento = eventos.find((el)=>el.evento.includes(tipoEventoInput)) //Busca si el evento ingresado coincide con las opciones
+let tipoEventoOutput = seleccionEvento.evento //Se guarda el evento relacionado
+let porcentajeEvento = seleccionEvento.porcentaje //Se guarda el porcentaje correspondiente al evento
+interes(porcentajeEvento) //Se realiza función para agregar el interés y se suma al costo total
 
+//Se declara qué día de la semana se realizará el evento
+let diaInput = prompt("¿Qué día de la semana realizarás el evento?") //Dia de la semana ingresada.
+let diaOutput //Dia de la semana regresada mediante objeto
+let porcentajeDia //Porcentaje regresado mediante objeto
+while(diaInput == "Lunes"){ //Condición para que el usuario no pueda ingresar el día Lunes (No se labora ese día)
+    diaInput = prompt("El día Lunes no está disponible para eventos, favor de escoger otro día.")
+}
+const seleccionDias = dias.find((el)=>el.dia.includes(diaInput)) //Busca si el día ingresado coincide con el array
+diaOutput = seleccionDias.dia //Guarda el día que se encontró relación
+porcentajeDia = seleccionDias.porcentaje //Guarda el porcentaje correspondiente al día
+interes(porcentajeDia) //Se realiza función para agregar el interés y se suma al costo total
+
+//Se entrega costo por paquete armado
+console.log(`Carrito de compras: \n\nAsistentes: ${asistentesOutput} - Precio: $${precioAsistentes}.00 \nTipo de evento: ${tipoEventoOutput} - interés: +${porcentajeEvento}% \nDía de la semana: ${diaOutput} - interés: +${porcentajeDia}% \nPrecio total: $${sumaTotal}.00 MXN`) //Se agregan todos los elementos correspondientes
 
