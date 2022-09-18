@@ -7,63 +7,42 @@
     <link rel="shortcut icon" href="#">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Desafío 1</title>
+    <title>Arma tu paquete</title>
 </head>
 <body>
-    <h1 class="my-5 ms-5">Elige un paquete:</h1>
-    <div class="d-flex justify-content-center">
-        <div class="cardPaquete">
-            <img src="./assets/img/paqEmp.jpg" alt="">
-            <h3 class="text-center">PAQUETE EMPRESARIAL (P1)</h3>
-            <p class="text-center">Paquete esencial para reuniones de trabajo o conferencias importantes, este paquete incluye banquete y decoración según el cliente lo requiera.</p>        
+    <h1 class="my-5 text-center">Arma tu paquete</h1>
+        <div class="armarPaqueteForm">
+            <form>
+                <div class="my-3">
+                    <label class="form-label" for="Asistentes">Asistentes</label>
+                    <input class="form-control" type="number" name="Asistentes" id="Asistentes">
+                </div>
+                <div class="my-3">
+                    <label class="form-label" for="Evento">Tipo de Evento</label>
+                    <select class="form-select" name="Evento" id="Evento">
+                        <option value="Boda">Boda</option>
+                        <option value="Graduación">Graduación</option>
+                        <option value="Empresarial">Empresarial</option>
+                        <option value="XV Años">XV Años</option>
+                        <option value="Bautizo">Bautizo</option>
+                        <option value="Piñata">Piñata</option>
+                        <option value="Auditorio">Auditorio</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="my-3">
+                    <label class="form-label" for="Fecha">Reservar Fecha</label>
+                    <input class="form-control" type="date" name="Fecha" id="Fecha">
+                </div>
+
+            </form>
         </div>
-        <div class="cardPaquete">
-            <img src="./assets/img/grad.jpg" alt="">
-            <h3 class="text-center">PAQUETE PREMIUM GRADUACIÓN (P2)</h3>
-            <p class="text-center">Paquete ideal para ceremonias y graduaciones.</p>    
+        <div class="my-3 text-center">
+            <button onclick="paqueteSubmit()" class="btn btn-primary" type="submit">Cotizar</button>
         </div>
-        <div class="cardPaquete">
-            <img src="./assets/img/premium mixt.jpg" alt="">
-            <h3 class="text-center">PAQUETE PREMIUM MIXTO (P3)</h3>
-            <p class="text-center">Paquete para fiestas y eventos grandes, el cliente puede escoger 3 de nuestros servicios que ofrecemos.</p>        
+        <div class="cotizacion">
+          
         </div>
-        <div class="cardPaquete">
-            <img src="./assets/img/bodas.jpeg" alt="">
-            <h3 class="text-center">PAQUETE BODA (P4)</h3>
-            <p class="text-center">Paquete ideal para bodas, en donde te daremos lo mejor de nuestros servicios para que tengas un día maravilloso.</p>    
-        </div>
-    </div>
-    <h2 class="my-5 ms-5">¿Quiéres agregar servicios?</h2>
-    <div class="d-flex flex-column mb-5">
-        <div class="ms-5 mb-2">
-            <input type="checkbox" name="Meseros y personal" id="logistica">
-            <label for="logistica">Meseros y personal (S1)</label>
-        </div>
-        <div class="ms-5 my-2">
-            <input type="checkbox" name="Decoración" id="decoracion"> 
-            <label for="decoracion">Decoración (S2)</label>
-        </div>
-        <div class="ms-5 my-2">
-            <input type="checkbox" name="Mesa de dulces" id="dulces">
-            <label for="dulces">Mesa de dulces (S3)</label>
-        </div>
-        <div class="ms-5 my-2">
-            <input type="checkbox" name="Vajillas" id="Vajillas"> 
-            <label for="Vajillas">Vajillas y utencilios (S4)</label>
-        </div>
-        <div class="ms-5 my-2">
-            <input type="checkbox" name="iluminación" id="iluminación">
-            <label for="iluminación">Servicio de iluminación (S5)</label> 
-        </div>
-        <div class="ms-5 my-2">
-            <input type="checkbox" name="Sonido" id="Sonido"> 
-            <label for="Sonido">Servicio de sonido y música (S6)</label>
-        </div>
-        <div class="ms-5 my-2">
-            <input type="checkbox" name="Video" id="Video"> 
-            <label for="Video">Servicio de video y fotografía (S7)</label>
-        </div>
-    </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 <script src="./app.js"></script>

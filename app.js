@@ -70,5 +70,14 @@ porcentajeDia = seleccionDias.porcentaje //Guarda el porcentaje correspondiente 
 interes(porcentajeDia) //Se realiza función para agregar el interés y se suma al costo total
 
 //Se entrega costo por paquete armado
-console.log(`Carrito de compras: \n\nAsistentes: ${asistentesOutput} - Precio: $${precioAsistentes}.00 \nTipo de evento: ${tipoEventoOutput} - interés: +${porcentajeEvento}% \nDía de la semana: ${diaOutput} - interés: +${porcentajeDia}% \nPrecio total: $${sumaTotal}.00 MXN`) //Se agregan todos los elementos correspondientes
-
+let container = document.querySelector(".cotizacion");
+container.innerHTML = 
+`<div class ="d-flex flex-column justify-content-start align-items-center">
+    <h2 class ="my-4">Carrito de compras:</h2>
+    <div>
+        <p><strong>Asistentes:</strong> ${asistentesOutput} - $${precioAsistentes}.00 MXN</p>
+        <p><strong>Tipo de evento:</strong> ${tipoEventoOutput} - ${porcentajeEvento}%</p>
+        <p><strong>Día de la semana:</strong> (${diaOutput}) - ${porcentajeDia}%</p>
+        <p><strong>Precio Total:</strong> $${sumaTotal}.00 MXN</p>
+    </div>
+</div>`;
