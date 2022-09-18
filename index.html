@@ -12,14 +12,14 @@
 <body>
     <h1 class="my-5 text-center">Arma tu paquete</h1>
         <div class="armarPaqueteForm">
-            <form>
+            <form id="formulario">
                 <div class="my-3">
                     <label class="form-label" for="Asistentes">Asistentes</label>
-                    <input class="form-control" type="number" name="Asistentes" id="Asistentes">
+                    <input class="form-control" type="number" name="Asistentes" id="Asistentes" required>
                 </div>
                 <div class="my-3">
                     <label class="form-label" for="Evento">Tipo de Evento</label>
-                    <select class="form-select" name="Evento" id="Evento">
+                    <select class="form-select" name="Evento" id="Evento" required>
                         <option value="Boda">Boda</option>
                         <option value="Graduación">Graduación</option>
                         <option value="Empresarial">Empresarial</option>
@@ -27,18 +27,22 @@
                         <option value="Bautizo">Bautizo</option>
                         <option value="Piñata">Piñata</option>
                         <option value="Auditorio">Auditorio</option>
-                        <option value="Otro">Otro</option>
+                        <option value="Otro">Otro</option >
                     </select>
                 </div>
                 <div class="my-3">
                     <label class="form-label" for="Fecha">Reservar Fecha</label>
-                    <input class="form-control" type="date" name="Fecha" id="Fecha">
+                    <input class="form-control" type="date" name="Fecha" id="Fecha" required>
                 </div>
-
+                <div class="d-flex justify-content-center my-3">
+                    <div class="mx-3">
+                        <button class="btn btn-primary" type="submit">Cotizar</button>
+                    </div>
+                    <div class="mx-3">
+                     <button class="btn btn-primary" type="reset">Limpiar formulario</button>
+                    </div>
+                </div>
             </form>
-        </div>
-        <div class="my-3 text-center">
-            <button onclick="paqueteSubmit()" class="btn btn-primary" type="submit">Cotizar</button>
         </div>
         <div class="cotizacion">
           
